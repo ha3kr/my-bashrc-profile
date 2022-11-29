@@ -1,10 +1,7 @@
-export PATH="$PATH:$HOME/go/bin"
-source ~/.bash_profile
+export GOPATH=/home/hack3r/go-workspace
+export GOROOT=/usr/local/go
+PATH=$PATH:$GOROOT/bin/:$GOPATH/bin
 
 function crtsh() {
-        curl -s "https://crt.sh/?q=$1&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
-}
-
-function quickprobe() {
-        httpx -silent -title -status-code -follow-redirects -tech-detect
+curl -s "https://crt.sh/?q=%.$1&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
 }
